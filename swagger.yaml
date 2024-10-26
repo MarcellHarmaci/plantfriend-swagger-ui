@@ -1,12 +1,12 @@
-openapi: 3.0.3
+openapi: 3.1.8
 info:
   title: Plant Friend API
   description: |-
-    This is the Plant Friend API definition based on the OpenAPI 3.0 specification.
+    This is the Plant Friend API definition.
     
     Some useful links:
     - [The API definition yaml file](https://github.com/MarcellHarmaci/plantfriend-swagger-ui/blob/master/swagger.yaml)
-    - [Use the Swagger Editor to edit the API](https://editor.swagger.io/?url=https://raw.githubusercontent.com/MarcellHarmaci/plantfriend-swagger-ui/refs/heads/master/swagger.yaml)
+    - [Use the Swagger Editor to edit the API](https://editor-next.swagger.io/?url=https://raw.githubusercontent.com/MarcellHarmaci/plantfriend-swagger-ui/refs/heads/master/swagger.yaml)
     - [Backend in Spring Boot implementing the API](https://github.com/MarcellHarmaci/plantfriend-spring)
     - TODO: Front-ends connected to the backend through the API...
   contact:
