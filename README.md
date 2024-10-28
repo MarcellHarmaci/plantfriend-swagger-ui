@@ -1,7 +1,7 @@
 # Swagger API documentation hosted with GitHub Pages
 To read the API specification visit https://marcellharmaci.github.io/plantfriend-swagger-ui/.
 
-## [<img alt="Swagger UI (Supported by SMARTBEAR)" src="https://raw.githubusercontent.com/swagger-api/swagger.io/wordpress/images/assets/SWU-logo-clr.png">](https://swagger.io/tools/swagger-ui/)
+## [<img alt="Swagger UI (Supported by SMARTBEAR)" src="https://raw.githubusercontent.com/swagger-api/swagger.io/wordpress/images/assets/SWU-logo-clr.png">](https://marcellharmaci.github.io/plantfriend-swagger-ui/)
 
 This repository is using [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for the [Plant Friend project](https://github.com/users/MarcellHarmaci/projects/1)'s API and host it for free with GitHub Pages.
 
