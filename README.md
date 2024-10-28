@@ -1,3 +1,8 @@
+# Plant Friend :seedling: documentation
+The Plant Friend project's goal is to make you take really good care of your houseplants.
+
+Have you ever forgotten the last time you watered a plant and ended up overwatering or underwatering the poor thing? With Plant Friend you can keep track of your watering schedule and the needs of your plants.
+
 # Swagger API documentation hosted with GitHub Pages
 To read the API specification visit https://marcellharmaci.github.io/plantfriend-swagger-ui/.
 
