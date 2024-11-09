@@ -147,8 +147,27 @@ paths:
     get:
       tags:
         - watering
-      summary: Read all watering events
-      operationId: getAllWaterings
+      summary: Read the most recent waterings from most to least recent.
+      operationId: getRecentWaterings
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+            default: 0
+          required: false
+          description: The number of items to skip before starting to collect the result set.
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 10
+          required: false
+          description: The number of items to return.
       responses:
         '200':
           description: Successful operation
