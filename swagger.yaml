@@ -63,7 +63,9 @@ paths:
         '400':
           description: Invalid input
         '422':
-          description: Validation exception
+          description: Input failed validation
+        '500':
+          description: A server error occurred
   /plant/{id}:
     get:
       tags:
@@ -117,10 +119,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Plant'
-        '400':
-          description: Invalid input
         '404':
           description: No plant found with given id
+        '422':
+          description: Input failed validation
+        '500':
+          description: A server error occurred
     delete:
       tags:
         - plant
@@ -134,10 +138,10 @@ paths:
           schema:
             type: integer
       responses:
+        '200':
+          description: Plant successfully deleted
         '404':
           description: No plant found with given id
-        '405':
-          description: The requested plant is already deleted
 
   /waterings:
     get:
