@@ -176,7 +176,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/WateringEvent'
+                  $ref: '#/components/schemas/Watering'
   /waterings/plant/{id}:
     get:
       tags:
@@ -199,9 +199,47 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PlantWateringEvent'
+                  $ref: '#/components/schemas/PlantWatering'
         '404':
           description: Plant not found
+    put:
+      tags:
+        - watering
+      summary: Create a new watering for a plant identified by id
+      operationId: addPlantWatering
+      parameters:
+        - name: id
+          in: path
+          description: Id of the plant that was watered
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - date
+              properties:
+                date:
+                  type: string
+                  format: date
+                comment:
+                  type: string
+      responses:
+        '200':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlantWatering'
+        '422':
+          description: Input failed validation
+        '500':
+          description: A server error occurred
   /waterings/plant/{id}/dates:
     get:
       tags:
@@ -304,7 +342,8 @@ components:
         name:
           type: string
           example: Cactus
-    WateringEvent:
+    Watering:
+      description: The watering of the plant with plant_id.
       type: object
       required:
         - plant_id
@@ -322,7 +361,8 @@ components:
         comment:
           type: string
           example: Lookin thirsty :S
-    PlantWateringEvent:
+    PlantWatering:
+      description: The watering of a plant.
       type: object
       required:
         - id
