@@ -41,7 +41,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Plant'
-  /plant:
     post:
       tags:
         - plant
@@ -66,7 +65,7 @@ paths:
           description: Input failed validation
         '500':
           description: A server error occurred
-  /plant/{id}:
+  /plants/{id}:
     get:
       tags:
         - plant
