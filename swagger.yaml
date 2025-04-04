@@ -153,7 +153,6 @@ paths:
           name: offset
           schema:
             type: integer
-            format: int64
             minimum: 0
             default: 0
           required: false
@@ -176,14 +175,14 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Watering'
-  /waterings/plant/{id}:
+  /waterings/plant/{plantId}:
     get:
       tags:
         - watering
       summary: Read waterings of a plant by plant id
       operationId: getWateringsByPlant
       parameters:
-        - name: id
+        - name: plantId
           in: path
           description: Id of plant to return the waterings of
           required: true
@@ -201,13 +200,13 @@ paths:
                   $ref: '#/components/schemas/PlantWatering'
         '404':
           description: Plant not found
-    put:
+    post:
       tags:
         - watering
-      summary: Create a new watering for a plant identified by id
+      summary: Create a new watering for a plant identified by the given id
       operationId: addPlantWatering
       parameters:
-        - name: id
+        - name: plantId
           in: path
           description: Id of the plant that was watered
           required: true
@@ -239,14 +238,14 @@ paths:
           description: Input failed validation
         '500':
           description: A server error occurred
-  /waterings/plant/{id}/dates:
+  /waterings/plant/{plantId}/dates:
     get:
       tags:
         - watering
       summary: Read watering dates of a plant by plant id
       operationId: getWateringDatesByPlant
       parameters:
-        - name: id
+        - name: plantId
           in: path
           description: Id of plant to return the watering dates of
           required: true
@@ -265,6 +264,59 @@ paths:
                   format: date
         '404':
           description: Plant not found
+  /waterings/{id}:
+    put:
+      tags:
+        - watering
+      summary: Update a watering by id
+      description: A watering's date and comment can be updated, but the plant that was watered cannot be changed.
+        Instead of changing the plant of a watering, delete the watering and create a new one for the correct plant.
+      operationId: updateWateringById
+      parameters:
+        - name: id
+          in: path
+          description: Id of watering to update
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WateringUpdate'
+        required: true
+      responses:
+        '200':
+          description: Watering successfully updated. The new state is returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Watering'
+        '404':
+          description: No watering found with given id
+        '422':
+          description: Input failed validation
+        '500':
+          description: A server error occurred
+    delete:
+      tags:
+        - watering
+      summary: Delete a watering by id
+      operationId: deleteWateringById
+      parameters:
+        - name: id
+          in: path
+          description: Id of the watering to delete
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Watering successfully deleted
+        '404':
+          description: No watering found with given id
 
   /user/login:
     get:
@@ -347,6 +399,7 @@ components:
       required:
         - plant_id
         - date
+        - comment
       properties:
         id: 
           type: integer
@@ -359,6 +412,7 @@ components:
           format: date
         comment:
           type: string
+          nullable: true
           example: Lookin thirsty :S
     PlantWatering:
       description: The watering of a plant.
@@ -375,6 +429,20 @@ components:
           format: date
         comment:
           type: string
+          nullable: true
+          example: Lookin thirsty :S
+    WateringUpdate:
+      description: The watering of the plant with plant_id.
+      type: object
+      required:
+        - date
+      properties:
+        date:
+          type: string
+          format: date
+        comment:
+          type: string
+          nullable: true
           example: Lookin thirsty :S
 
           
