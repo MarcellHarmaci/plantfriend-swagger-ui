@@ -221,12 +221,21 @@ paths:
               type: object
               required:
                 - date
+                - plant_health
+                - comment
               properties:
                 date:
                   type: string
                   format: date
+                plant_health:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 5
+                  example: 5
                 comment:
                   type: string
+                  nullable: true
       responses:
         '200':
           description: Successful operation
@@ -234,6 +243,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PlantWatering'
+        '404':
+          description: Plant not found
         '422':
           description: Input failed validation
         '500':
