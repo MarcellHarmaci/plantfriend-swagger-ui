@@ -197,7 +197,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/PlantWatering'
+                  $ref: '#/components/schemas/Watering'
         '404':
           description: Plant not found
     post:
@@ -218,31 +218,14 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              required:
-                - date
-                - plant_health
-                - comment
-              properties:
-                date:
-                  type: string
-                  format: date
-                plant_health:
-                  type: integer
-                  format: int32
-                  minimum: 1
-                  maximum: 5
-                  example: 5
-                comment:
-                  type: string
-                  nullable: true
+              $ref: '#/components/schemas/Watering'
       responses:
         '200':
           description: Successful operation
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlantWatering'
+                $ref: '#/components/schemas/Watering'
         '404':
           description: Plant not found
         '422':
@@ -295,7 +278,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/WateringUpdate'
+              $ref: '#/components/schemas/Watering'
         required: true
       responses:
         '200':
@@ -421,37 +404,12 @@ components:
         date:
           type: string
           format: date
-        comment:
-          type: string
-          nullable: true
-          example: Lookin thirsty :S
-    PlantWatering:
-      description: The watering of a plant.
-      type: object
-      required:
-        - id
-        - date
-        - comment
-      properties:
-        id: 
-          type: integer
-          format: int64
-        date:
-          type: string
-          format: date
-        comment:
-          type: string
-          nullable: true
-          example: Lookin thirsty :S
-    WateringUpdate:
-      description: The watering of the plant with plant_id.
-      type: object
-      required:
-        - date
-      properties:
-        date:
-          type: string
-          format: date
+        plant_health:
+                  type: integer
+                  format: int32
+                  minimum: 1
+                  maximum: 5
+                  example: 5
         comment:
           type: string
           nullable: true
